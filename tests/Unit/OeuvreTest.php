@@ -19,12 +19,12 @@ class OeuvreApiTest extends TestCase
     public function test_creer_une_oeuvre_via_api()
     {
         $response = $this->postJson('/api/oeuvres', [
-            'titre' => 'Nouveau titre de l\'oeuvre',
-            'description' => 'Description de l\'oeuvre',
+            'titre' => 'titre',
+            'description' => 'Description',
         ]);
 
         $response->assertStatus(201);
-        $this->assertDatabaseHas('oeuvres', ['titre' => 'Nouveau titre de l\'oeuvre']);
+        $this->assertDatabaseHas('oeuvres', ['titre' => 'titre']);
     }
 
     /**
@@ -52,12 +52,12 @@ class OeuvreApiTest extends TestCase
         $oeuvre = Oeuvre::factory()->create();
 
         $response = $this->putJson('/api/oeuvres/' . $oeuvre->id, [
-            'titre' => 'Nouveau titre de l\'oeuvre',
-            'description' => 'Description de l\'oeuvre',
+            'titre' => 'La joconde',
+            'description' => 'jonconde de leonardo da vinci',
         ]);
 
         $response->assertStatus(200);
-        $this->assertDatabaseHas('oeuvres', ['titre' => 'Nouveau titre de l\'oeuvre']);
+        $this->assertDatabaseHas('oeuvres', ['titre' => 'La joconde']);
     }
 
     /**
